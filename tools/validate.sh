@@ -33,6 +33,15 @@ run_static_checks() {
         -o "${test_dir}/test_demo_navigation"
     "${test_dir}/test_demo_navigation"
     "${CC:-cc}" -std=c11 -Wall -Wextra -Werror -Imain \
+        tests/test_pinyin_quiz.c main/pinyin_quiz.c main/pinyin_quiz_data.c \
+        -o "${test_dir}/test_pinyin_quiz"
+    "${test_dir}/test_pinyin_quiz"
+    "${CC:-cc}" -std=c11 -Wall -Wextra -Werror -Imain \
+        tests/test_wrong_book.c main/wrong_book_logic.c \
+        -o "${test_dir}/test_wrong_book"
+    "${test_dir}/test_wrong_book"
+    python3 tools/gen_app_fonts.py --check
+    "${CC:-cc}" -std=c11 -Wall -Wextra -Werror -Imain \
         tests/test_key_guard.c -o "${test_dir}/test_key_guard"
     "${test_dir}/test_key_guard"
     "${CC:-cc}" -std=c11 -Wall -Wextra -Werror -Icomponents/bsp/src \
